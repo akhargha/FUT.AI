@@ -10,7 +10,13 @@ The project aims to [provide a brief overview of the application nature and purp
 
 ## Team Members
 
-The project is currently being developed by [your name/your team members' names]. 
+The project is currently being developed by:
+
+- Shivanshu Dwivedi
+- Anupam Khargaria
+- Shashwath Sunkum
+## Team Mentor
+This project is mentored by Professor Jonathan Johnson
 
 ## Modules
 
