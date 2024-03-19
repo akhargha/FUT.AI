@@ -2,11 +2,18 @@
 
 ## Introduction
 
-This repository hosts the documentation for our project. Below are some initial ideas to kickstart the README.
+FUT.AI is an innovative platform designed to revolutionize the way content is generated and consumed. The project utilizes advanced algorithms to score and aggregate data, providing a seamless experience from authentication to content delivery on the cloud.
 
 ## Project Overview
 
 The project aims to [provide a brief overview of the application nature and purpose].
+
+## Features
+- **Authentication**: Secure user authentication process.
+- **Frontend**: A user-friendly interface for interacting with the platform.
+- **Score Aggregator**: An intelligent system that aggregates scores from various metrics.
+- **Ollama**: A sophisticated article generation feature.
+- **Database**: Robust data storage and retrieval systems.
 
 ## Team Members
 
@@ -15,8 +22,9 @@ The project is currently being developed by:
 - Shivanshu Dwivedi
 - Anupam Khargaria
 - Shashwath Sunkum
+  
 ## Team Mentor
-This project is mentored by Professor Jonathan Johnson
+This project is mentored by Professor Jonathan Johnson, Trinity College.
 
 ## Modules
 
