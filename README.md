@@ -1,4 +1,4 @@
-# Project README
+# FUT.AI
 
 ## Introduction
 - FUT.AI is an innovative platform designed to revolutionize the way content is generated and consumed. 
