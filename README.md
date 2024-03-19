@@ -26,6 +26,17 @@ The project is currently being developed by:
 ## Team Mentor
 This project is mentored by Professor Jonathan Johnson, Trinity College.
 
+## Testing Files
+
+- To test ArticleApp run the following commands
+
+# docker build -t ArticleApp .
+# docker run -p 8080:8080 ArticleApp
+
+- To test Central Microservice
+
+- To test FAST API
+  
 ## Modules
 
 The project consists of the following modules:
