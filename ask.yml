@@ -1,0 +1,44 @@
+tags:
+  - Question to Gemma
+parameters:
+  - in: "body"
+    name: "body"
+    description: "Consume a message from a specific Kafka topic"
+    required: true
+    schema:
+      $ref: "#/definitions/ConsumerRequest"
+definitions:
+  ConsumerRequest:
+    type: "object"
+    properties:
+      group_id:
+        type: "string"
+        example: "mygroup"
+      topic:
+        type: "string"
+        example: "hello-kafka"
+      config:
+        type: "object"
+        additionalProperties: {}
+        example: { "auto.offset.reset": "earliest" }
+  ConsumerResponse:
+    type: "object"
+    properties:
+      body:
+        type: "object"
+        example: "Hello World!"
+      statusResponse:
+        type: "object"
+        properties:
+          code:
+            type: "string"
+          desc:
+            type: "string"
+        example:
+          code: SUCCESS
+          desc: Service Success.
+responses:
+  200:
+    description: "Successful response"
+    schema:
+      $ref: "#/definitions/ConsumerResponse"
