@@ -2,7 +2,9 @@
 
 ## Introduction
 
-FUT.AI is an innovative platform designed to revolutionize the way content is generated and consumed. The project utilizes advanced algorithms to score and aggregate data, providing a seamless experience from authentication to content delivery on the cloud.
+FUT.AI is an innovative platform designed to revolutionize the way content is generated and consumed.
+The project uses advanced algorithms to score and aggregate data,
+providing a seamless experience from authentication to content delivery in the cloud.
 
 ## Project Overview
 
