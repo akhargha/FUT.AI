@@ -30,8 +30,8 @@ This project is mentored by Professor Jonathan Johnson, Trinity College.
 
 - To test ArticleApp run the following commands
 
-#### docker build -t ArticleApp . 
-#### docker run -p 8080:8080 ArticleApp
+####     docker build -t ArticleApp . 
+####     docker run -p 8080:8080 ArticleApp
 
 - To test Central Microservice
 
