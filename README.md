@@ -33,31 +33,31 @@ This project is mentored by Professor Jonathan Johnson, Trinity College.
 ####     docker build -t ArticleApp . 
 ####     docker run -p 8080:8080 ArticleApp
 
-- To test Central Microservice
+- To test Aggregator
+
+####     docker build -t FutAPI . 
+####     docker run -p 8080:8080 FutAPI
 
 - To test FAST API
   
-## Modules
-
-The project consists of the following modules:
-- [Module 1]
-- [Module 2]
-- [Module 3]
-- ...
-
 ## Languages and Frameworks
 
 The project has been developed using the following languages and frameworks:
 - Language: Python, Java and Javascript
-- Framework: Flask and SpringBoot
-- AI Tool: Google Gemini Pro
-- AI Integration tool: Langchain
-- Database: Firebase
+- Framework: Flask, Spring Boot, NodeJS
+- AI Tool: Mistral-v1
+- AI Integration tool: Langchain, HuggingFace
+- Database: Spring JPA, H2, Hibernate
   
 
 ## Interface
 
-The user interface will feature [describe the general UI layout and primary actions]. 
+The user interface will feature :
+
+1) Score Section
+2) Fixtures Section
+3) Blogs Section
+4) Weather Section 
 
 NOTE: All the above details are subject to change as the project evolves and progresses.
 describe the general UI layout and primary actions]. 
