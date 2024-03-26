@@ -6,7 +6,7 @@
 - The project utilizes advanced algorithms and Google Gemini Pro LLM model to collect score and aggregate data regarding articles, providing a seamless experience from authentication to content delivery on the cloud. 
 
 ## Project Overview
-- Descrive the project
+FUT.AI is a cutting-edge platform that transforms how soccer content is generated and consumed. By leveraging advanced algorithms and the Google Gemini Pro LLM model, FUT.AI aggregates live scores of your favorite soccer teams alongside related articles, offering a comprehensive and seamless experience. This innovative project not only provides up-to-the-minute score updates but also integrates weather information from match stadiums, enriching the context for each game. Users can access this wealth of information through a user-friendly frontend or directly via the Command Line, making FUT.AI an essential tool for soccer enthusiasts and content consumers seeking a centralized, cloud-based solution for soccer-related data.
 
 ## Features
 - **Authentication**: Secure user authentication process. (Most probably using Google's OAuthentication)
