@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 import requests
+import json
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
@@ -39,6 +40,10 @@ def get_standings():
             'score': f"{fixture['goals']['home']} - {fixture['goals']['away']}"
         }
         matches.append(match)
+
+    directory = '../website/src/data'
+    with open(f'{directory}/weekly_fixtures.json', 'w') as f:
+        json.dump(matches, f, indent=4)
 
     return jsonify(matches)
 
