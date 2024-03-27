@@ -1,16 +1,13 @@
 import * as React from "react";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Button from "@mui/joy/Button";
-import ButtonGroup from "@mui/joy/ButtonGroup";
 import Grid from "@mui/joy/Grid";
 
-const FixureBox = (props) => {
-  const { imageSrc, name, position, emailAddress, linkedinUrl } = props;
+const FixtureBox = (props) => {
+  const { home_team, away_team, start_time, venue, home_team_logo,  away_team_logo, score } = props;
 
   return (
-    <Card sx={{ width: 500 }} color="success" variant="outlined" invertedColors>
+    <Card sx={{ width: 530 }} color="success" variant="outlined" invertedColors>
       {/** League */}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img
@@ -35,7 +32,7 @@ const FixureBox = (props) => {
             }}
           >
             <img
-              src="https://media.api-sports.io/football/teams/529.png"
+              src={home_team_logo}
               loading="lazy"
               alt=""
               style={{ maxWidth: "50px", height: "auto" }}
@@ -50,7 +47,7 @@ const FixureBox = (props) => {
               alignItems: "center",
             }}
           >
-            <Typography level="h2">0 - 0</Typography>
+            <Typography level="h3">{score}</Typography>
           </Grid>
           <Grid
             item
@@ -62,7 +59,7 @@ const FixureBox = (props) => {
             }}
           >
             <img
-              src="https://media.api-sports.io/football/teams/530.png"
+              src={away_team_logo}
               loading="lazy"
               alt=""
               style={{ maxWidth: "50px", height: "auto" }}
@@ -80,7 +77,7 @@ const FixureBox = (props) => {
                 alignItems: "center",
               }}
             >
-              <Typography level="h3">Barcelona</Typography>
+              <Typography level="h3">{home_team}</Typography>
             </Grid>
             <Grid
               item
@@ -100,7 +97,7 @@ const FixureBox = (props) => {
                 alignItems: "center",
               }}
             >
-              <Typography level="h3">Atletico</Typography>
+              <Typography level="h3">{away_team}</Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -108,11 +105,11 @@ const FixureBox = (props) => {
 
       <div>
         <Typography level="body-sm" style={{ textAlign: "center" }}>
-          March 26 | Estadi de la Ceràmica
+          {start_time} | {venue}
         </Typography>
       </div>
     </Card>
   );
 };
 
-export default FixureBox;
+export default FixtureBox;
