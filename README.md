@@ -6,7 +6,7 @@
 - The project utilizes advanced algorithms and Google Gemini Pro LLM model to collect score and aggregate data regarding articles, providing a seamless experience from authentication to content delivery on the cloud. 
 
 ## Project Overview
-- Descrive the project
+FUT.AI is a cutting-edge platform that transforms how soccer content is generated and consumed. By leveraging advanced algorithms and the Google Gemini Pro LLM model, FUT.AI aggregates live scores of your favorite soccer teams alongside related articles, offering a comprehensive and seamless experience. This innovative project not only provides up-to-the-minute score updates but also integrates weather information from match stadiums, enriching the context for each game. Users can access this wealth of information through a user-friendly frontend or directly via the Command Line, making FUT.AI an essential tool for soccer enthusiasts and content consumers seeking a centralized, cloud-based solution for soccer-related data.
 
 ## Features
 - **Authentication**: Secure user authentication process. (Most probably using Google's OAuthentication)
@@ -33,31 +33,31 @@ This project is mentored by Professor Jonathan Johnson, Trinity College.
 ####     docker build -t ArticleApp . 
 ####     docker run -p 8080:8080 ArticleApp
 
-- To test Central Microservice
+- To test Aggregator
+
+####     docker build -t FutAPI . 
+####     docker run -p 8080:8080 FutAPI
 
 - To test FAST API
   
-## Modules
-
-The project consists of the following modules:
-- [Module 1]
-- [Module 2]
-- [Module 3]
-- ...
-
 ## Languages and Frameworks
 
 The project has been developed using the following languages and frameworks:
 - Language: Python, Java and Javascript
-- Framework: Flask and SpringBoot
-- AI Tool: Google Gemini Pro
-- AI Integration tool: Langchain
-- Database: Firebase
+- Framework: Flask, Spring Boot, NodeJS
+- AI Tool: Mistral-v1
+- AI Integration tool: Langchain, HuggingFace
+- Database: Spring JPA, H2, Hibernate
   
 
 ## Interface
 
-The user interface will feature [describe the general UI layout and primary actions]. 
+The user interface will feature :
+
+1) Score Section
+2) Fixtures Section
+3) Blogs Section
+4) Weather Section 
 
 NOTE: All the above details are subject to change as the project evolves and progresses.
 describe the general UI layout and primary actions]. 
