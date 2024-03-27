@@ -1,57 +1,54 @@
-#Importing Flask
 from flask import Flask, request, jsonify
-
-#Importing Flasgger route
-from flasgger import swag_from
-
-#Importing Swagger
-from flasgger import Swagger
-
-#Importing request library
 import requests
 
-#Defining the app in flask
-ArticleApp = Flask(__name__)
+# Initializing the Flask application
+app = Flask(__name__)
 
-#Defining the template for Swagger UI implementation
-template = {
-    "swagger": "2.0",
-    "info": {
-      "title": "Flask Kafka API",
-      "description": "Ask your questions to Gemma",
-      "version": "1.0"
-    }
-  }
-ArticleApp.config['SWAGGER'] = {
-    'title': 'Flask Kafka API',
-    'uiversion': 2,
-    'template': './resources/flasgger/swagger_ui.html'
-}
+# This is without Swagger to be functional with Postman API
 
-#Make the app run on Swagger UI
-Swagger(ArticleApp, template=template)
+# Defining the API URL for the Mistral model and the authentication header
+MISTRAL_API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
+MISTRAL_HEADERS = {"Authorization": "Bearer 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"}
 
-#Defining the Authentication for Gemma
-API_URL = "https://api-inference.huggingface.co/models/google/gemma-7b"
-headers = {"Authorization": "Bearer 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"}
+# Hypothetical backend service URL for soccer match details
+SOCCER_MATCH_API_URL = "http://127.0.0.1:5000" #Mention the URL from where you can get the scores
 
-#Defining the query model to Gemma
-def query(payload):
-    response = requests.post(API_URL, headers=headers, json=payload)
+# Function to query the language model
+def query_mistral(payload):
+    response = requests.post(MISTRAL_API_URL, headers=MISTRAL_HEADERS, json=payload)
     return response.json()
 
-#Defining the post method for the given application
-@swag_from('ask.yml')
-@ArticleApp.route('/ask', methods=['POST'])
-def ask_question():
-    data = request.get_json()
-    if not data or 'question' not in data:
-        return jsonify({'error': 'Please provide a question in JSON format.'}), 400
 
-    question = data['question']
-    output = query({"inputs": question})
-    return jsonify(output)
+# Function to get soccer match details
+def get_soccer_match_details():
+    # Simulating a GET request to the backend service
+    response = requests.get(SOCCER_MATCH_API_URL)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
 
-#Running the ArticleApp
+# Endpoint to process the input and query the language model
+@app.route('/generate_article', methods=['GET'])
+def generate_article():
+    match_details = get_soccer_match_details()
+    if match_details:
+        teams = match_details.get('teams', 'Team 1 vs Team 2')
+        score = match_details.get('score', '0-0')
+        venue = match_details.get('venue', 'Unknown Stadium')
+
+        # Concatenate match details with the instruction
+        combined_input = f"{teams}, {score}, at {venue}. Create an article about it."
+
+        # Query the language model with the combined input
+        model_response = query_mistral({"inputs": combined_input})
+
+        # Return the model's response
+        return jsonify(model_response)
+    else:
+        return jsonify({'error': 'Failed to retrieve soccer match details'}), 500
+
+
+# Run the Flask application
 if __name__ == '__main__':
-    ArticleApp.run(debug=True, port=8080)
+    app.run(debug=True, port=1234)
