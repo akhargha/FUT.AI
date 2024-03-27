@@ -10,7 +10,7 @@ const FixureBox = (props) => {
   const { imageSrc, name, position, emailAddress, linkedinUrl } = props;
 
   return (
-    <Card sx={{ width: 500 }} color="neutral" variant="outlined" invertedColors>
+    <Card sx={{ width: 500 }} color="success" variant="outlined" invertedColors>
       {/** League */}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <img
@@ -100,7 +100,7 @@ const FixureBox = (props) => {
                 alignItems: "center",
               }}
             >
-              <Typography level="h3">Atletico Madrid</Typography>
+              <Typography level="h3">Atletico</Typography>
             </Grid>
           </Grid>
         </Grid>
