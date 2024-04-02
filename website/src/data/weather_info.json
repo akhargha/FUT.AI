@@ -1,0 +1,41 @@
+{
+    "current_weather": {
+        "temperature": "14.0 \u00b0C",
+        "feels_like": "14.6 \u00b0C",
+        "condition": "Clear",
+        "wind": "9.0 kph, direction WSW",
+        "humidity": "67%"
+    },
+    "forecast": [
+        {
+            "date": "2024-04-02",
+            "avg_temp": "9.7 \u00b0C",
+            "max_temp": "16.7 \u00b0C",
+            "min_temp": "3.4 \u00b0C",
+            "condition": "Sunny",
+            "chance_of_rain": 0,
+            "chance_of_snow": 0,
+            "max_wind": "13.0 kph"
+        },
+        {
+            "date": "2024-04-03",
+            "avg_temp": "11.2 \u00b0C",
+            "max_temp": "19.0 \u00b0C",
+            "min_temp": "5.2 \u00b0C",
+            "condition": "Sunny",
+            "chance_of_rain": 0,
+            "chance_of_snow": 0,
+            "max_wind": "11.5 kph"
+        },
+        {
+            "date": "2024-04-04",
+            "avg_temp": "13.3 \u00b0C",
+            "max_temp": "21.2 \u00b0C",
+            "min_temp": "6.5 \u00b0C",
+            "condition": "Sunny",
+            "chance_of_rain": 0,
+            "chance_of_snow": 0,
+            "max_wind": "8.6 kph"
+        }
+    ]
+}
