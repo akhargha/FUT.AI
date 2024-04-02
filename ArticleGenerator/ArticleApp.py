@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
 import requests
+import json
+from flask_restx import Api, Resource, fields
+from flask_cors import CORS
+import os
 
 # Initializing the Flask application
 app = Flask(__name__)
-
-# This is without Swagger to be functional with Postman API
 
 # Defining the API URL for the Mistral model and the authentication header
 MISTRAL_API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
