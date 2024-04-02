@@ -7,9 +7,9 @@ const MyTeam = () => {
   return (
     <div>
       <NavBar />
-      <FixtureBox />
+      <div style={{ padding: "20px"}}>
       <SearchBar />
-      <h1>MyTeam</h1>
+      </div>
     </div>
   );
 };

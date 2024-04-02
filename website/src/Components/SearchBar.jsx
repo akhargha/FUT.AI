@@ -24,12 +24,12 @@ export default function SearchBar() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}> {/* Adjusted for inline display */}
       <Autocomplete
         placeholder="Select a team"
         options={teamsData}
         getOptionLabel={(option) => option['Team Name']}
-        sx={{ width: 300 }}
+        sx={{ width: 300, flex: 1 }}
         onHighlightChange={handleHighlightChange}
         renderOption={(props, option) => (
           <Box component="li" {...props} sx={{ display: 'flex', alignItems: 'center' }}>
