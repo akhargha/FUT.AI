@@ -1,3 +1,5 @@
+import json
+
 import requests
 from flask import Flask, jsonify
 
@@ -8,7 +10,12 @@ app = Flask(__name__)
 def sports_weather():
     url = 'http://api.weatherapi.com/v1/forecast.json'
     api_key = '81a60096a4254881ada201256243103'
-    location = 'Hartford'
+
+    json_file_path = '../website/src/data/weekly_fixtures.json'
+    with open(json_file_path, 'r') as file:
+        loc = json.load(file)
+    location = loc[0]['city']
+    # location = 'Granada'
     days = '3'
 
     params = {
@@ -52,6 +59,11 @@ def sports_weather():
 
     else:
         return jsonify({"error": "Failed to fetch sports events data"}), response.status_code
+    # response = requests.get(url, params=params)
+    # if response.ok:
+    #     return jsonify(response.json()), 200
+    # else:
+    #     return jsonify({"error": "Failed to fetch sports events data"}), response.status_code
 
 if __name__ == '__main__':
     app.run(debug=True)

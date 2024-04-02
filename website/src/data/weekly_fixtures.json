@@ -1,92 +1,12 @@
 [
     {
-        "home_team": "Almeria",
-        "away_team": "Osasuna",
-        "start_time": "2024-03-30T15:15:00+00:00",
-        "venue": "Power Horse Stadium",
-        "home_team_logo": "https://media.api-sports.io/football/teams/723.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/727.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Barcelona",
-        "away_team": "Las Palmas",
-        "start_time": "2024-03-30T20:00:00+00:00",
-        "venue": "Estadi Ol\u00edmpic Llu\u00eds Companys",
-        "home_team_logo": "https://media.api-sports.io/football/teams/529.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/534.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Cadiz",
-        "away_team": "Granada CF",
-        "start_time": "2024-03-29T20:00:00+00:00",
-        "venue": "Estadio Nuevo Mirandilla",
-        "home_team_logo": "https://media.api-sports.io/football/teams/724.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/715.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Celta Vigo",
-        "away_team": "Rayo Vallecano",
-        "start_time": "2024-03-31T12:00:00+00:00",
-        "venue": "Abanca-Bala\u00eddos",
-        "home_team_logo": "https://media.api-sports.io/football/teams/538.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/728.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Getafe",
-        "away_team": "Sevilla",
-        "start_time": "2024-03-30T13:00:00+00:00",
-        "venue": "Estadio Coliseum",
-        "home_team_logo": "https://media.api-sports.io/football/teams/546.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/536.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Alaves",
-        "away_team": "Real Sociedad",
-        "start_time": "2024-03-31T16:30:00+00:00",
-        "venue": "Estadio de Mendizorroza",
-        "home_team_logo": "https://media.api-sports.io/football/teams/542.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/548.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Real Madrid",
-        "away_team": "Athletic Club",
-        "start_time": "2024-03-31T19:00:00+00:00",
-        "venue": "Estadio Santiago Bernab\u00e9u",
-        "home_team_logo": "https://media.api-sports.io/football/teams/541.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/531.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Villarreal",
-        "away_team": "Atletico Madrid",
-        "start_time": "2024-04-01T19:00:00+00:00",
-        "venue": "Estadio de la Cer\u00e1mica",
-        "home_team_logo": "https://media.api-sports.io/football/teams/533.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/530.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Girona",
-        "away_team": "Real Betis",
-        "start_time": "2024-03-31T14:15:00+00:00",
-        "venue": "Estadi Municipal de Montilivi",
-        "home_team_logo": "https://media.api-sports.io/football/teams/547.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/543.png",
-        "score": "None - None"
-    },
-    {
-        "home_team": "Valencia",
-        "away_team": "Mallorca",
-        "start_time": "2024-03-30T17:30:00+00:00",
-        "venue": "Estadio de Mestalla",
-        "home_team_logo": "https://media.api-sports.io/football/teams/532.png",
-        "away_team_logo": "https://media.api-sports.io/football/teams/798.png",
+        "home_team": "Granada CF",
+        "away_team": "Valencia",
+        "start_time": "2024-04-04T18:00:00+00:00",
+        "venue": "Estadio Nuevo Los C\u00e1rmenes",
+        "city": "Granada",
+        "home_team_logo": "https://media.api-sports.io/football/teams/715.png",
+        "away_team_logo": "https://media.api-sports.io/football/teams/532.png",
         "score": "None - None"
     }
 ]

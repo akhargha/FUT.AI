@@ -35,6 +35,7 @@ def get_standings():
             'away_team': fixture['teams']['away']['name'],
             'start_time': fixture['fixture']['date'],
             'venue': fixture['fixture']['venue']['name'],
+            'city': fixture['fixture']['venue']['city'],
             'home_team_logo': fixture['teams']['home']['logo'],
             'away_team_logo': fixture['teams']['away']['logo'],
             'score': f"{fixture['goals']['home']} - {fixture['goals']['away']}"
