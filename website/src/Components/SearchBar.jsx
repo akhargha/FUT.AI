@@ -24,21 +24,23 @@ export default function SearchBar() {
   };
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}> {/* Adjusted for inline display */}
-      <Autocomplete
-        placeholder="Select a team"
-        options={teamsData}
-        getOptionLabel={(option) => option['Team Name']}
-        sx={{ width: 300, flex: 1 }}
-        onHighlightChange={handleHighlightChange}
-        renderOption={(props, option) => (
-          <Box component="li" {...props} sx={{ display: 'flex', alignItems: 'center' }}>
-            <img src={option['Team Logo']} alt="" style={{ width: 30, height: 30, marginRight: 10 }} />
-            <Typography level="body2">{option['Team Name']}</Typography>
-          </Box>
-        )}
-      />
-      <Button onClick={handleAddTeam}>Add</Button>
+    <Box sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}>
+      <Box sx={{ width: 400 }}>
+        <Autocomplete
+          placeholder="Select a team"
+          options={teamsData}
+          getOptionLabel={(option) => option['Team Name']}
+          sx={{ width: '100%' }}
+          onHighlightChange={handleHighlightChange}
+          renderOption={(props, option) => (
+            <Box component="li" {...props} sx={{ display: 'flex', alignItems: 'center' }}>
+              <img src={option['Team Logo']} alt="" style={{ width: 30, height: 30, marginRight: 10 }} />
+              <Typography level="body2">{option['Team Name']}</Typography>
+            </Box>
+          )}
+        />
+      </Box>
+      <Button sx={{ ml: 1 }} onClick={handleAddTeam} style={{ maxHeight: "25px"}}>Add</Button>
     </Box>
   );
 }
