@@ -34,8 +34,7 @@ def sports_weather():
             "feels_like": f"{current_weather['feelslike_c']} °C",
             "condition": current_weather['condition']['text'],
             "wind": f"{current_weather['wind_kph']} kph, direction {current_weather['wind_dir']}",
-            "humidity": f"{current_weather['humidity']}%",
-            "uv_index": current_weather['uv']
+            "humidity": f"{current_weather['humidity']}%"
         }
 
         # Extracting important info from forecast
@@ -52,9 +51,14 @@ def sports_weather():
                 "max_wind": f"{day['day']['maxwind_kph']} kph"
             }
             forecast_info.append(day_info)
+        weather_info = {"current_weather": current_info, "forecast": forecast_info}
+        json_file_path = '../website/src/data/weather_info.json'
 
+        # Serialize the Python dictionary to a JSON formatted string and write it to a file
+        with open(json_file_path, 'w') as file:
+            json.dump(weather_info, file, indent=4)  # Using indent for pretty printing
         # Return both current weather and forecast info
-        return jsonify({"current_weather": current_info, "forecast": forecast_info}), 200
+        return jsonify(weather_info), 200
     # return jsonify(response.json()), 200
 
     else:
