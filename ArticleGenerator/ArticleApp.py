@@ -7,50 +7,68 @@ import os
 
 # Initializing the Flask application
 app = Flask(__name__)
+api = Api(app, version='1.0', title="Question Generator")
+CORS(app)
+
+ns = api.namespace('question', description="QuestionGenerator")
+input_model = api.model("InputText", {
+    'text': fields.String(required=True, description='Input text to generate question'),
+})
 
 # Defining the API URL for the Mistral model and the authentication header
-MISTRAL_API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1"
-MISTRAL_HEADERS = {"Authorization": "Bearer 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"}
-
-# Hypothetical backend service URL for soccer match details
-SOCCER_MATCH_API_URL = "http://127.0.0.1:5000" #Mention the URL from where you can get the scores
-
-# Function to query the language model
-def query_mistral(payload):
-    response = requests.post(MISTRAL_API_URL, headers=MISTRAL_HEADERS, json=payload)
-    return response.json()
+MISTRAL_API_URL = "https://api-inference.huggingface.co/models/google/gemma-7b"
+MISTRAL_HEADERS = {"Authorization": "Bearer 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"}  # Ensure you use your actual token
 
 
-# Function to get soccer match details
-def get_soccer_match_details():
-    # Simulating a GET request to the backend service
-    response = requests.get(SOCCER_MATCH_API_URL)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+@ns.route('/generate-article')
+class ArticleGenerator(Resource):
+    @ns.expect(input_model)
+    def post(self):
+        # Load the JSON file
+        with open('website/src/data/weekly_fixtures.json', 'r') as f:
+            data = json.load(f)
 
-# Endpoint to process the input and query the language model
-@app.route('/generate_article', methods=['GET'])
-def generate_article():
-    match_details = get_soccer_match_details()
-    if match_details:
-        teams = match_details.get('teams', 'Team 1 vs Team 2')
-        score = match_details.get('score', '0-0')
-        venue = match_details.get('venue', 'Unknown Stadium')
+        if not data:
+            return {'error': 'JSON data is empty'}, 400
 
-        # Concatenate match details with the instruction
-        combined_input = f"{teams}, {score}, at {venue}. Create an article about it."
+        # Access the first item from the list
+        match_info = data[0]
 
-        # Query the language model with the combined input
-        model_response = query_mistral({"inputs": combined_input})
+        input_text_city = match_info.get('city', '').strip()
+        input_text_score = match_info.get('score', '').strip()
+        input_text_home_team = match_info.get('home_team', '').strip()
+        input_text_away_team = match_info.get('away_team', '').strip()
+        input_start_time = match_info.get('start_time', '').strip()
 
-        # Return the model's response
-        return jsonify(model_response)
-    else:
-        return jsonify({'error': 'Failed to retrieve soccer match details'}), 500
+        prompt_text = f"{input_text_city} {input_text_away_team} {input_text_home_team} {input_text_score} {input_start_time} Can you create a detailed article about this soccer match details in 650 words?"
+
+        request_payload = {
+            "inputs": prompt_text,
+            "parameters": {
+                "max_new_tokens": 650,  # Adjusted to match the prompt request for word count
+                "max_length": 650
+            },
+            "options": {"wait_for_model": True}
+        }
+
+        response = requests.post(MISTRAL_API_URL, headers=MISTRAL_HEADERS, json=request_payload)
+
+        if response.status_code != 200:
+            return {'error': 'Failed to generate article through API', 'message': response.text}, response.status_code
+
+        article_text = response.json()[0]['generated_text']
+        article_data = {
+            "HomeTeam": input_text_home_team,
+            "AwayTeam": input_text_away_team,
+            "Article": article_text
+        }
+
+        file_path = os.path.join('website/src/data', 'article.json')
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(article_data, f, ensure_ascii=False, indent=4)
+
+        return article_data
 
 
-# Run the Flask application
 if __name__ == '__main__':
-    app.run(debug=True, port=1234)
+    app.run(debug=True, port=5004)
