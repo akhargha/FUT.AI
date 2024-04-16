@@ -7,9 +7,11 @@ const MyTeam = () => {
   return (
     <div>
       <NavBar />
-      <div style={{ padding: "20px", textAlign: "center"}}>
+      <div style={{ padding: "20px", textAlign: "center" }}>
         <h1>Add your favorite teams</h1>
-      <SearchBar />
+        <SearchBar />
+        <h1>My teams</h1>
+        
       </div>
     </div>
   );

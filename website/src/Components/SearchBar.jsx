@@ -4,12 +4,16 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Button from '@mui/joy/Button';
+import Snackbar from '@mui/joy/Snackbar';
 import { supabase } from '../supabase_client'; // Ensure this path is correct
 
 export default function SearchBar() {
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [highlightedTeam, setHighlightedTeam] = useState(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarColor, setSnackbarColor] = useState('');
 
   // Fetch teams from the database
   useEffect(() => {
@@ -38,18 +42,27 @@ export default function SearchBar() {
       const { data, error } = await supabase
         .from('favourite_team')
         .insert([{ team_name: highlightedTeam.team_name }]);
-
       if (error) {
         console.error('Error adding team to favourites:', error);
+        setSnackbarMessage('Error adding the team');
+        setSnackbarColor('danger');
+        setSnackbarOpen(true);
       } else {
         console.log('Added to favourites:', highlightedTeam.team_name);
-        // You can perform additional actions here, such as displaying a success message
+        setSnackbarMessage('Added to your favourites');
+        setSnackbarColor('success');
+        setSnackbarOpen(true);
       }
     }
   };
 
+  // Close the snackbar
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', minHeight: '100vh' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', minHeight: '20vh' }}>
       <Box sx={{ width: 400 }}>
         <Autocomplete
           placeholder="Select a team"
@@ -66,6 +79,17 @@ export default function SearchBar() {
         />
       </Box>
       <Button sx={{ ml: 1 }} onClick={addTeamToFavourites} style={{ maxHeight: "25px" }}>Add</Button>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        color={snackbarColor}
+        variant='solid'
+        size='lg'
+      >
+        {snackbarMessage}
+      </Snackbar>
     </Box>
   );
 }
