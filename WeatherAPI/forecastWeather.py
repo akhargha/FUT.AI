@@ -14,7 +14,7 @@ def sports_weather():
     json_file_path = '../website/src/data/weekly_fixtures.json'
     with open(json_file_path, 'r') as file:
         loc = json.load(file)
-    location = loc[0]['city']
+    location = loc[6]['city']
     # location = 'Granada'
     days = '3'
 

@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, jsonify
 import requests
 import json
@@ -42,9 +44,23 @@ def get_standings():
         }
         matches.append(match)
 
+    # directory = '../website/src/data'
+    # with open(f'{directory}/weekly_fixtures.json', 'w') as f:
+    #     json.dump(matches, f, indent=4)
+
     directory = '../website/src/data'
-    with open(f'{directory}/weekly_fixtures.json', 'w') as f:
-        json.dump(matches, f, indent=4)
+    filepath = os.path.join(directory, 'weekly_fixtures.json')
+
+    # Ensure directory exists
+    os.makedirs(directory, exist_ok=True)
+
+    try:
+        with open(filepath, 'w') as f:
+            json.dump(matches, f, indent=4)
+        return jsonify(matches)
+    except Exception as e:
+        print(f"Error writing file: {e}")
+        return jsonify({"error": "Failed to write data to file"}), 500
 
     return jsonify(matches)
 
