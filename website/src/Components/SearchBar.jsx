@@ -4,7 +4,7 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/joy/Autocomplete';
 import Button from '@mui/joy/Button';
-import { supabase } from '../supabase_client';
+import { supabase } from '../supabase_client'; // Ensure this path is correct
 
 export default function SearchBar() {
   const [teams, setTeams] = useState([]);
@@ -31,12 +31,20 @@ export default function SearchBar() {
     setHighlightedTeam(option);
   };
 
-  // Function to handle the addition of the highlighted team
-  const handleAddTeam = () => {
+  // Function to add the highlighted team to the favourites in the database
+  const addTeamToFavourites = async () => {
     if (highlightedTeam) {
       setSelectedTeam(highlightedTeam);
-      console.log(highlightedTeam);
-      // Perform additional actions here, such as updating a list
+      const { data, error } = await supabase
+        .from('favourite_team')
+        .insert([{ team_name: highlightedTeam.team_name }]);
+
+      if (error) {
+        console.error('Error adding team to favourites:', error);
+      } else {
+        console.log('Added to favourites:', highlightedTeam.team_name);
+        // You can perform additional actions here, such as displaying a success message
+      }
     }
   };
 
@@ -57,7 +65,7 @@ export default function SearchBar() {
           )}
         />
       </Box>
-      <Button sx={{ ml: 1 }} onClick={handleAddTeam} style={{ maxHeight: "25px" }}>Add</Button>
+      <Button sx={{ ml: 1 }} onClick={addTeamToFavourites} style={{ maxHeight: "25px" }}>Add</Button>
     </Box>
   );
 }
