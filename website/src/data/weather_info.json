@@ -1,41 +1,41 @@
 {
     "current_weather": {
-        "temperature": "14.0 \u00b0C",
-        "feels_like": "14.6 \u00b0C",
-        "condition": "Clear",
-        "wind": "9.0 kph, direction WSW",
-        "humidity": "67%"
+        "temperature": "34.0 \u00b0C",
+        "feels_like": "35.9 \u00b0C",
+        "condition": "Partly cloudy",
+        "wind": "3.6 kph, direction N",
+        "humidity": "44%"
     },
     "forecast": [
         {
-            "date": "2024-04-02",
-            "avg_temp": "9.7 \u00b0C",
-            "max_temp": "16.7 \u00b0C",
-            "min_temp": "3.4 \u00b0C",
-            "condition": "Sunny",
-            "chance_of_rain": 0,
+            "date": "2024-04-16",
+            "avg_temp": "25.9 \u00b0C",
+            "max_temp": "34.6 \u00b0C",
+            "min_temp": "20.1 \u00b0C",
+            "condition": "Patchy rain nearby",
+            "chance_of_rain": 75,
             "chance_of_snow": 0,
-            "max_wind": "13.0 kph"
+            "max_wind": "10.1 kph"
         },
         {
-            "date": "2024-04-03",
-            "avg_temp": "11.2 \u00b0C",
-            "max_temp": "19.0 \u00b0C",
-            "min_temp": "5.2 \u00b0C",
-            "condition": "Sunny",
-            "chance_of_rain": 0,
+            "date": "2024-04-17",
+            "avg_temp": "25.4 \u00b0C",
+            "max_temp": "32.2 \u00b0C",
+            "min_temp": "21.3 \u00b0C",
+            "condition": "Moderate rain",
+            "chance_of_rain": 89,
             "chance_of_snow": 0,
-            "max_wind": "11.5 kph"
+            "max_wind": "7.6 kph"
         },
         {
-            "date": "2024-04-04",
-            "avg_temp": "13.3 \u00b0C",
-            "max_temp": "21.2 \u00b0C",
-            "min_temp": "6.5 \u00b0C",
-            "condition": "Sunny",
-            "chance_of_rain": 0,
+            "date": "2024-04-18",
+            "avg_temp": "24.9 \u00b0C",
+            "max_temp": "30.6 \u00b0C",
+            "min_temp": "20.8 \u00b0C",
+            "condition": "Heavy rain",
+            "chance_of_rain": 85,
             "chance_of_snow": 0,
-            "max_wind": "8.6 kph"
+            "max_wind": "7.9 kph"
         }
     ]
 }
