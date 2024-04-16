@@ -39,19 +39,34 @@ export default function SearchBar() {
   const addTeamToFavourites = async () => {
     if (highlightedTeam) {
       setSelectedTeam(highlightedTeam);
-      const { data, error } = await supabase
+
+      // Check if the team is already in the favourites
+      const { data: existingTeams, error: existingError } = await supabase
         .from('favourite_team')
-        .insert([{ team_name: highlightedTeam.team_name }]);
-      if (error) {
-        console.error('Error adding team to favourites:', error);
-        setSnackbarMessage('Error adding the team');
+        .select('team_name')
+        .eq('team_name', highlightedTeam.team_name)
+        .single();
+
+      if (existingTeams) {
+        setSnackbarMessage('Team already in your favourites');
         setSnackbarColor('danger');
         setSnackbarOpen(true);
       } else {
-        console.log('Added to favourites:', highlightedTeam.team_name);
-        setSnackbarMessage('Added to your favourites');
-        setSnackbarColor('success');
-        setSnackbarOpen(true);
+        // If not in favourites, add the team
+        const { data, error } = await supabase
+          .from('favourite_team')
+          .insert([{ team_name: highlightedTeam.team_name }]);
+        if (error) {
+          console.error('Error adding team to favourites:', error);
+          setSnackbarMessage('Error adding the team');
+          setSnackbarColor('danger');
+          setSnackbarOpen(true);
+        } else {
+          console.log('Added to favourites:', highlightedTeam.team_name);
+          setSnackbarMessage('Added to your favourites');
+          setSnackbarColor('success');
+          setSnackbarOpen(true);
+        }
       }
     }
   };
