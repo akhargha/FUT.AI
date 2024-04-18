@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import requests
 import json
 from datetime import datetime, timedelta
+from supabase_client import supabase
 
 app = Flask(__name__)
 
@@ -20,6 +21,8 @@ def get_standings():
     data = response.json()
     # standings = data['response'][0]['league']['standings'][0]
     # Assuming first array contains the standings we're interested in
+    
+    supabase.table('LaLigaLeague').delete().neq('id', 0).execute()
 
     teams = []
     for fixture in data['response']:
@@ -28,11 +31,19 @@ def get_standings():
             'Team Logo': fixture['team']['logo']
         }
         teams.append(details)
+    
+    for team in teams:
+        data = {
+            'team_name': team['Team Name'],
+            'team_logo': team['Team Logo']
+        }
+        supabase.table('LaLigaLeague').insert(data).execute()
 
     directory = '../website/src/data'
     with open(f'{directory}/league_teams_list.json', 'w') as f:
         json.dump(teams, f, indent=4)
 
+    
     return jsonify(teams)
 
 
