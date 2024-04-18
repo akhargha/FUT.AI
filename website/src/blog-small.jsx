@@ -7,6 +7,7 @@ import ModalClose from '@mui/joy/ModalClose';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import { supabase } from '../src/supabase_client';
+import { Grid } from '@mui/joy';
 
 const Blog = () => {
   const [articles, setArticles] = useState([]);
@@ -50,18 +51,20 @@ const Blog = () => {
     <div>
       <NavBar />
       <React.Fragment>
+      <Grid container spacing={2} sx={{ padding: '20px'}}>
         {articles.map((article, index) => (
           <>
             {/* Conditionally render cards and modals for home_team and away_team if they match a favourite team */}
             {[article.home_team, article.away_team].map((team, idx) => 
               favouriteTeams.includes(team) && (
                 <React.Fragment key={`${team}-${index}`}>
+                  <Grid item xs={3} key={index}>
                   <Card
                     variant="outlined"
                     onClick={() => handleOpenModal(`${team}-${index}`)}
                     sx={{
-                      width: 400,
-                      height: 400,
+                      width: 300,
+                      height: 300,
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'center',
@@ -100,14 +103,14 @@ const Blog = () => {
                       </Typography>
                     </Sheet>
                   </Modal>
+                  </Grid>
                 </React.Fragment>
               )
             )}
           </>
         ))}
+        </Grid>
       </React.Fragment>
-      <FixtureBox />
-      <h1>ABS</h1>
     </div>
   );
 };
