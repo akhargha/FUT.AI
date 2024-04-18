@@ -1,17 +1,15 @@
 from flask import Flask, jsonify
 import requests
 from datetime import datetime, timedelta
-from supabase import create_client, Client
+from supabase_client import supabase
 
 app = Flask(__name__)
 
-# Supabase setup
-url = 'https://hbrecxmlkcpcwmoijrke.supabase.co'  # Replace with your Supabase project URL
-key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhicmVjeG1sa2NwY3dtb2lqcmtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMyNDk3MjIsImV4cCI6MjAyODgyNTcyMn0.2Oubd4u4Ehw2XHCynBQEbxCbugJ88tGzsDIsm6xxJik'  # Replace with your Supabase API key
-supabase: Client = create_client(url, key)
-
 @app.route('/get-weekly-fixtures')
 def get_standings():
+    
+    supabase.table('weekly_fixtures').delete().neq('id', 0).execute()
+    
     api_url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures'
     one_week_later = datetime.now()
     today = one_week_later - timedelta(weeks=1)
@@ -45,7 +43,9 @@ def get_standings():
 
     # Insert matches into Supabase
     insert_result = supabase.table('weekly_fixtures').insert(matches).execute()
-
+    
+    
+    return jsonify(matches)
     # if insert_result.error:
     #     print(f"Error inserting data into Supabase: {insert_result.error}")
     #     return jsonify({"error": "Failed to insert data into Supabase"}), 500
