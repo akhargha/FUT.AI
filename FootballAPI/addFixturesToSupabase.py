@@ -13,8 +13,9 @@ supabase: Client = create_client(url, key)
 @app.route('/get-weekly-fixtures')
 def get_standings():
     api_url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures'
-    today = datetime.now()
-    one_week_later = today + timedelta(weeks=1)
+    one_week_later = datetime.now()
+    today = one_week_later - timedelta(weeks=1)
+    
 
     from_date = today.strftime('%Y-%m-%d')
     to_date = one_week_later.strftime('%Y-%m-%d')
