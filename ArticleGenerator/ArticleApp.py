@@ -53,7 +53,9 @@ class ArticleGenerator(Resource):
                 article_text = completion.choices[0].message.content
                 article_data = {
                     "id": input_text_id,
-                    "article_data": article_text
+                    "article_data": article_text,
+                    "home_team": input_text_home_team,  # Add home_team to the article_data
+                    "away_team": input_text_away_team   # Add away_team to the article_data
                 }
                 
                 supabase.table('articles').insert(article_data).execute()
