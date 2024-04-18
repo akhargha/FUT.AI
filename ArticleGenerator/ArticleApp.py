@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_restx import Api, Resource
 from flask_cors import CORS
-import requests
-from supabase import create_client, Client
+import os
+from openai import OpenAI
+from supabase_client import supabase
 
 # Initializing the Flask application
 app = Flask(__name__)
@@ -11,18 +12,16 @@ CORS(app)
 
 ns = api.namespace('article', description="Article Generator Operations")
 
-# Defining the API URL for the Mistral model and the authentication header
-MISTRAL_API_URL = "https://api-inference.huggingface.co/models/google/gemma-7b"
-MISTRAL_HEADERS = {"Authorization": "Bearer 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"}
+# Initialize the OpenAI and Supabase clients
+openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
-# Initialize Supabase client
-url = "https://hbrecxmlkcpcwmoijrke.supabase.co"
-key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhicmVjeG1sa2NwY3dtb2lqcmtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMyNDk3MjIsImV4cCI6MjAyODgyNTcyMn0.2Oubd4u4Ehw2XHCynBQEbxCbugJ88tGzsDIsm6xxJik"  # Replace with your actual Supabase key
-supabase: Client = create_client(url, key)
 
 @ns.route('/generate-articles')
 class ArticleGenerator(Resource):
     def get(self):
+        
+        supabase.table('articles').delete().neq('id', 0).execute()
+        
         # Retrieve data from the weekly_fixtures table
         response = supabase.table('weekly_fixtures').select("*").execute()
         fixtures = response.data
@@ -39,31 +38,25 @@ class ArticleGenerator(Resource):
             input_text_away_team = match_info.get('away_team', '')
             input_start_time = match_info.get('start_time', '')
 
-            prompt_text = f"{input_text_city} {input_text_away_team} {input_text_home_team} {input_text_score} {input_start_time} Can you create a detailed article about this soccer match details in 650 words?"
+            prompt_text = f"{input_text_city} {input_text_away_team} {input_text_home_team} {input_text_score} {input_start_time} Write a detailed article about this soccer match in 250 words."
 
-            request_payload = {
-                "inputs": prompt_text,
-                "parameters": {
-                    "max_new_tokens": 650,  # Adjusted to match the prompt request for word count
-                    "max_length": 650
-                },
-                "options": {"wait_for_model": True}
-            }
+            # Generate article using OpenAI's Chat API
+            completion = openai_client.chat.completions.create(
+                model="gpt-4",
+                messages=[
+                    {"role": "system", "content": "You are a sports journalist writing articles about La Liga soccer matches."},
+                    {"role": "user", "content": prompt_text}
+                ]
+            )
 
-            response = requests.post(MISTRAL_API_URL, headers=MISTRAL_HEADERS, json=request_payload)
-
-            if response.status_code == 200:
-                article_text = response.json()[0]['generated_text']
+            if completion.choices[0].message:
+                article_text = completion.choices[0].message.content
                 article_data = {
                     "id": input_text_id,
                     "article_data": article_text
                 }
-
-                # Check if article already exists
-                existing_article = supabase.table('articles').select("id").eq("id", input_text_id).execute()
-                if not existing_article.data:
-                    # Proceed to insert if not existing
-                    supabase.table('articles').insert(article_data).execute()
+                
+                supabase.table('articles').insert(article_data).execute()
 
                 articles.append(article_data)
             else:
