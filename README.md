@@ -15,10 +15,7 @@ FUT.AI is a cutting-edge platform that transforms how soccer content is generate
 - **Article Generator**: A Google Gemini Pro API which uses the information of the matches extracted through API to create articles regarding the soccer match.
 - **Database**: Robust data storage and retrieval systems which stores the scores of soccer matches and then also creates 
 
-![Untitled-2024-04-23-0201](https://github.com/akhargha/FUT.AI/assets/118499953/3c3c35ea-6666-44ba-9027-ecbe8c97e162)
-
-
-
+<a href="https://ibb.co/9YGpd61"><img src="https://i.ibb.co/7ybS0PZ/Untitled-2024-04-23-0201-2.png" alt="Untitled-2024-04-23-0201-2" border="0"></a><br />
 
 ## Team Members
 
