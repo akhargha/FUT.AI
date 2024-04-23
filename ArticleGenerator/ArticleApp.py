@@ -37,8 +37,9 @@ class ArticleGenerator(Resource):
             input_text_home_team = match_info.get('home_team', '')
             input_text_away_team = match_info.get('away_team', '')
             input_start_time = match_info.get('start_time', '')
+            input_weather = match_info.get('weather', '')
 
-            prompt_text = f"{input_text_city} {input_text_away_team} {input_text_home_team} {input_text_score} {input_start_time} Write a detailed article about this soccer match in 250 words."
+            prompt_text = f"{input_text_city} {input_text_away_team} {input_text_home_team} {input_text_score} {input_start_time} with weather {input_weather}. Write a detailed article about this soccer match in 250 words."
 
             # Generate article using OpenAI's Chat API
             completion = openai_client.chat.completions.create(
