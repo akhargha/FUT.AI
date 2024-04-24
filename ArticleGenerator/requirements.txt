@@ -1,4 +1,8 @@
 Flask==3.0.2
+flask_restx==1.3.0
+flask_cors
 requests==2.27.1
+openai
 flasgger
 supabase
+python-dotenv
