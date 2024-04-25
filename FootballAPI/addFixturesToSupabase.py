@@ -7,18 +7,15 @@ app = Flask(__name__)
 
 @app.route('/get-weekly-fixtures')
 def get_standings():
-    
     supabase.table('weekly_fixtures').delete().neq('id', 0).execute()
-    
+
     api_url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures'
     one_week_later = datetime.now()
     today = one_week_later - timedelta(weeks=1)
-    
-
     from_date = today.strftime('%Y-%m-%d')
     to_date = one_week_later.strftime('%Y-%m-%d')
-    querystring = {"league": "140", "season": "2023", "from": from_date, "to": to_date}
 
+    querystring = {"league": "140", "season": "2023", "from": from_date, "to": to_date}
     headers = {
         'X-RapidAPI-Key': '29f493b303mshacb5a21245936edp14fdbdjsn0517920ec46c',  # Replace with your actual API key
         'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
@@ -39,18 +36,21 @@ def get_standings():
             'away_team_logo': fixture['teams']['away']['logo'],
             'score': f"{fixture['goals']['home']} - {fixture['goals']['away']}"
         }
+        
+        # Make a request to the forecastWeather endpoint to get the weather for the city
+        weather_response = requests.get(f"http://localhost:5001/forecast-weather?city={match['city']}")
+        if weather_response.ok:
+            weather_data = weather_response.json()
+            match['weather'] = weather_data['weather']
+        else:
+            match['weather'] = 'Unknown'
+        
         matches.append(match)
 
     # Insert matches into Supabase
     insert_result = supabase.table('weekly_fixtures').insert(matches).execute()
-    
-    
+
     return jsonify(matches)
-    # if insert_result.error:
-    #     print(f"Error inserting data into Supabase: {insert_result.error}")
-    #     return jsonify({"error": "Failed to insert data into Supabase"}), 500
-    #
-    # return jsonify(matches)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
