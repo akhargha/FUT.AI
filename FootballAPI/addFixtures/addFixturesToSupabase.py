@@ -36,8 +36,6 @@ def get_standings():
             'away_team_logo': fixture['teams']['away']['logo'],
             'score': f"{fixture['goals']['home']} - {fixture['goals']['away']}"
         }
-        print("HEHE")
-        
         
         # ...
         # Make a request to the forecastWeather endpoint to get the weather for the city
