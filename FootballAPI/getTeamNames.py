@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import requests
 import json
 from datetime import datetime, timedelta
-from supabase_client import supabase
+from FootballAPI.addFixtures.supabase_client import supabase
 
 app = Flask(__name__)
 

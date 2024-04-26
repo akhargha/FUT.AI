@@ -1,0 +1,15 @@
+version: '3'
+services:
+  add-fixtures-to-supabase:
+    build: ./FootballAPI/addFixtures
+    ports:
+      - "5000:5000"
+    environment:
+      - SUPABASE_URL=https://hbrecxmlkcpcwmoijrke.supabase.co
+      - SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhicmVjeG1sa2NwY3dtb2lqcmtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMyNDk3MjIsImV4cCI6MjAyODgyNTcyMn0.2Oubd4u4Ehw2XHCynBQEbxCbugJ88tGzsDIsm6xxJik
+  forecast-weather:
+    build: ./WeatherAPI
+    ports:
+      - "5001:5001"
+    depends_on:
+      - add-fixtures-to-supabase

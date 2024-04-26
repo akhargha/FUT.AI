@@ -36,9 +36,12 @@ def get_standings():
             'away_team_logo': fixture['teams']['away']['logo'],
             'score': f"{fixture['goals']['home']} - {fixture['goals']['away']}"
         }
+        print("HEHE")
         
+        
+        # ...
         # Make a request to the forecastWeather endpoint to get the weather for the city
-        weather_response = requests.get(f"http://localhost:5001/forecast-weather?city={match['city']}")
+        weather_response = requests.get(f"http://forecast-weather:5001/forecast-weather?city={match['city']}")
         if weather_response.ok:
             weather_data = weather_response.json()
             match['weather'] = weather_data['weather']
@@ -53,4 +56,4 @@ def get_standings():
     return jsonify(matches)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
