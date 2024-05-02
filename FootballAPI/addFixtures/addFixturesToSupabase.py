@@ -17,7 +17,7 @@ def get_standings():
 
     querystring = {"league": "140", "season": "2023", "from": from_date, "to": to_date}
     headers = {
-        'X-RapidAPI-Key': '29f493b303mshacb5a21245936edp14fdbdjsn0517920ec46c',  # Replace with your actual API key
+        'X-RapidAPI-Key': '083d9f6515msh8b6a1cb2d2c3f21p1beaafjsn2406afa4e5a8',  # Replace with your actual API key
         'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
     }
 

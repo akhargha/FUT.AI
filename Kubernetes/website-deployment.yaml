@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fut-website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fut-website
+  template:
+    metadata:
+      labels:
+        app: fut-website
+    spec:
+      containers:
+        - name: fut-website
+          image: shashsunkum/fut-website:v1  # Updated to use Docker Hub
+          ports:
+            - containerPort: 5173
