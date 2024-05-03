@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: football-api-deployment
+  namespace: fut
+  labels:
+    app: football-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: football-api
+  template:
+    metadata:
+      labels:
+        app: football-api
+    spec:
+      containers:
+      - name: football-api
+        image: shivanshudwivedi/footballapi-addfixtures:v1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: SUPABASE_URL
+          value: "https://hbrecxmlkcpcwmoijrke.supabase.co"
+        - name: SUPABASE_KEY
+          value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhicmVjeG1sa2NwY3dtb2lqcmtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMyNDk3MjIsImV4cCI6MjAyODgyNTcyMn0.2Oubd4u4Ehw2XHCynBQEbxCbugJ88tGzsDIsm6xxJik"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
