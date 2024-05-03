@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: article-app-deployment
+  namespace: fut
   labels:
     app: article-app
 spec:
@@ -16,9 +17,14 @@ spec:
     spec:
       containers:
       - name: article-app
-        image: shivanshudwivedi/article:latest
+        image: shivanshudwivedi/article:final
         ports:
         - containerPort: 5000
+        resources:
+          limits:
+            memory: "512Mi"
+          requests:
+            memory: "256Mi"
         env:
         - name: SUPABASE_URL
           value: "https://hbrecxmlkcpcwmoijrke.supabase.co"
