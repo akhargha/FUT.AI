@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: football-api
-        image: shivanshudwivedi/footballapi-addfixtures:v1
+        image: shivanshudwivedi/footballapi-addfixtures:0.0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
         env:
@@ -27,8 +28,8 @@ spec:
           value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhicmVjeG1sa2NwY3dtb2lqcmtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMyNDk3MjIsImV4cCI6MjAyODgyNTcyMn0.2Oubd4u4Ehw2XHCynBQEbxCbugJ88tGzsDIsm6xxJik"
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
             memory: "128Mi"
             cpu: "500m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"

@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: website
-        image: shivanshudwivedi/website:v1
+        image: shivanshudwivedi/website:0.0.4
+        imagePullPolicy: Always
         ports:
         - containerPort: 5173
         resources:
@@ -27,3 +28,10 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5173
+          failureThreshold: 2
+          initialDelaySeconds: 15
+          periodSeconds: 60

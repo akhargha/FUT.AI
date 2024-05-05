@@ -4,9 +4,9 @@ metadata:
   name: website-service
   namespace: fut
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-  - port: 5173
+  - port: 80
     targetPort: 5173
     protocol: TCP
   selector:

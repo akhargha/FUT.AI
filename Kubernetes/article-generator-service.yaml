@@ -4,7 +4,7 @@ metadata:
   name: article-app-service
   namespace: fut
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 5000
     targetPort: 5000

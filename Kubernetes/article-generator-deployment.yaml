@@ -17,14 +17,15 @@ spec:
     spec:
       containers:
       - name: article-app
-        image: shivanshudwivedi/article:final
+        image: shivanshudwivedi/article:0.0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
-        resources:
-          limits:
-            memory: "512Mi"
-          requests:
-            memory: "256Mi"
+#        resources:
+#          limits:
+#            memory: "512Mi"
+#          requests:
+#            memory: "256Mi"
         env:  
         - name: SUPABASE_URL
           value: "https://hbrecxmlkcpcwmoijrke.supabase.co"

@@ -39,7 +39,8 @@ def get_standings():
         
         # ...
         # Make a request to the forecastWeather endpoint to get the weather for the city
-        weather_response = requests.get(f"http://forecast-weather:5001/forecast-weather?city={match['city']}")
+        # weather_response = requests.get(f"http://forecast-weather:5001/forecast-weather?city={match['city']}")
+        weather_response = requests.get(f"http://weather-api-service:5001/forecast-weather?city={match['city']}")
         if weather_response.ok:
             weather_data = weather_response.json()
             match['weather'] = weather_data['weather']

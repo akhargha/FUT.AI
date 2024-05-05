@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: weather-api
-        image: shivanshudwivedi/weatherapi:v1
+        image: shivanshudwivedi/weatherapi:0.0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 5001
         resources:
