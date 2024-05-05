@@ -2,14 +2,19 @@ from flask import Flask, jsonify
 import requests
 from datetime import datetime, timedelta
 from supabase_client import supabase
+import os
 
 app = Flask(__name__)
+
+# Environment variables
+API_KEY = os.getenv('RAPIDAPI_KEY')
+WEATHER_API_URL = os.getenv('WEATHER_API_URL')
+API_URL = os.getenv('RAPIDAPI_URL')
 
 @app.route('/get-weekly-fixtures')
 def get_standings():
     supabase.table('weekly_fixtures').delete().neq('id', 0).execute()
 
-    api_url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures'
     one_week_later = datetime.now()
     today = one_week_later - timedelta(weeks=1)
     from_date = today.strftime('%Y-%m-%d')
@@ -17,11 +22,11 @@ def get_standings():
 
     querystring = {"league": "140", "season": "2023", "from": from_date, "to": to_date}
     headers = {
-        'X-RapidAPI-Key': '083d9f6515msh8b6a1cb2d2c3f21p1beaafjsn2406afa4e5a8',  # Replace with your actual API key
+        'X-RapidAPI-Key': API_KEY,  # Use API key from environment
         'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
     }
 
-    response = requests.get(api_url, headers=headers, params=querystring)
+    response = requests.get(API_URL, headers=headers, params=querystring)
     data = response.json()
 
     matches = []
@@ -40,7 +45,7 @@ def get_standings():
         # ...
         # Make a request to the forecastWeather endpoint to get the weather for the city
         # weather_response = requests.get(f"http://forecast-weather:5001/forecast-weather?city={match['city']}")
-        weather_response = requests.get(f"http://weather-api-service:5001/forecast-weather?city={match['city']}")
+        weather_response = requests.get(f"{WEATHER_API_URL}?city={match['city']}")
         if weather_response.ok:
             weather_data = weather_response.json()
             match['weather'] = weather_data['weather']

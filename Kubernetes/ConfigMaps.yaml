@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-urls
+  namespace: fut
+data:
+  supabase-url: 'https://hbrecxmlkcpcwmoijrke.supabase.co'
+  weather-api-url: 'http://weather-api-service:5001/forecast-weather'
+  rapid-api-url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures'

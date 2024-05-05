@@ -17,19 +17,40 @@ spec:
     spec:
       containers:
       - name: football-api
-        image: shivanshudwivedi/footballapi-addfixtures:0.0.1
+        image: shivanshudwivedi/footballapi-addfixtures:0.0.2
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
         env:
-        - name: SUPABASE_URL
-          value: "https://hbrecxmlkcpcwmoijrke.supabase.co"
-        - name: SUPABASE_KEY
-          value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhicmVjeG1sa2NwY3dtb2lqcmtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMyNDk3MjIsImV4cCI6MjAyODgyNTcyMn0.2Oubd4u4Ehw2XHCynBQEbxCbugJ88tGzsDIsm6xxJik"
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "500m"
-          limits:
-            memory: "256Mi"
-            cpu: "1000m"
+          - name: RAPIDAPI_KEY
+            valueFrom:
+              secretKeyRef:
+                name: api-keys
+                key: rapid-api-key
+          - name: SUPABASE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: api-keys
+                key: supabase-key
+          - name: SUPABASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: service-urls
+                key: supabase-url
+          - name: WEATHER_API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: service-urls
+                key: weather-api-url
+          - name: RAPIDAPI_URL
+            valueFrom:
+              configMapKeyRef:
+                name: service-urls
+                key: rapid-api-url
+#        resources:
+#          requests:
+#            memory: "128Mi"
+#            cpu: "500m"
+#          limits:
+#            memory: "256Mi"
+#            cpu: "1000m"
