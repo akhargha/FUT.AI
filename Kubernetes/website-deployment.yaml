@@ -6,7 +6,7 @@ metadata:
   labels:
     app: website
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: website
@@ -17,10 +17,21 @@ spec:
     spec:
       containers:
       - name: website
-        image: shivanshudwivedi/website:0.0.4
+        image: shivanshudwivedi/website:0.0.5
         imagePullPolicy: Always
         ports:
         - containerPort: 5173
+        env:
+          - name: VITE_SUPABASE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: api-keys
+                key: supabase-key
+          - name: VITE_SUPABASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: service-urls
+                key: supabase-url
         resources:
           requests:
             memory: "64Mi"

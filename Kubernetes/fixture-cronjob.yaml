@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: trigger-weekly-fixtures
+  namespace: fut
+spec:
+  schedule: "0 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: trigger
+            image: curlimages/curl:latest
+            command: ["curl"]
+            args: ["http://football-api-service.fut.svc.cluster.local:5000/get-weekly-fixtures"]
+          restartPolicy: OnFailure

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: article-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: article-app
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: article-app
-        image: shivanshudwivedi/article:0.0.1
+        image: shivanshudwivedi/article:0.0.2
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -26,13 +26,22 @@ spec:
 #            memory: "512Mi"
 #          requests:
 #            memory: "256Mi"
-        env:  
-        - name: SUPABASE_URL
-          value: "https://hbrecxmlkcpcwmoijrke.supabase.co"
+        env:
         - name: SUPABASE_KEY
-          value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhicmVjeG1sa2NwY3dtb2lqcmtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMyNDk3MjIsImV4cCI6MjAyODgyNTcyMn0.2Oubd4u4Ehw2XHCynBQEbxCbugJ88tGzsDIsm6xxJik"
+          valueFrom:
+            secretKeyRef:
+              name: api-keys
+              key: supabase-key
+        - name: SUPABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: service-urls
+              key: supabase-url
         - name: OPENAI_API_KEY
-          value: "sk-proj-VbqYzw4WCXwHrOIUPwyKT3BlbkFJ5DL4VMQ56kwM3bp1UgFy"
+          valueFrom:
+            secretKeyRef:
+              name: api-keys
+              key: openai-key
         - name: FLASK_APP
           value: "ArticleApp.py"
         - name: FLASK_RUN_HOST

@@ -13,7 +13,7 @@ CORS(app)
 ns = api.namespace('article', description="Article Generator Operations")
 
 # Initialize the OpenAI and Supabase clients
-openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 @ns.route('/generate-articles')

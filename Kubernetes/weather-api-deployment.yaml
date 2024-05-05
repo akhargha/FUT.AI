@@ -6,7 +6,7 @@ metadata:
   labels:
     app: weather-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: weather-api
@@ -17,10 +17,21 @@ spec:
     spec:
       containers:
       - name: weather-api
-        image: shivanshudwivedi/weatherapi:0.0.1
+        image: shivanshudwivedi/weatherapi:0.0.2
         imagePullPolicy: Always
         ports:
         - containerPort: 5001
+        env:
+          - name: WEATHER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: api-keys
+                key: weather-key
+          - name: WEATHER_URL
+            valueFrom:
+              configMapKeyRef:
+                name: service-urls
+                key: weather-url
         resources:
           requests:
             memory: "64Mi"

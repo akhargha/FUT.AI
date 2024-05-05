@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: trigger-articles
+  namespace: fut
+spec:
+  schedule: "0 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: trigger
+            image: curlimages/curl:latest
+            command: ["curl"]
+            args: ["http://article-app-service:5000/article/generate-articles"]
+          restartPolicy: OnFailure

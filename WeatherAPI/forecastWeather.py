@@ -1,8 +1,13 @@
 import json
 import requests
 from flask import Flask, jsonify, request
+import os
 
 app = Flask(__name__)
+
+# Environment variables
+WEATHER_URL = os.getenv('WEATHER_URL')
+WEATHER_KEY = os.getenv('WEATHER_KEY')
 
 @app.route('/forecast-weather')
 def sports_weather():
@@ -13,10 +18,10 @@ def sports_weather():
     
     try:
         params = {
-            'key': api_key,
+            'key': WEATHER_KEY,
             'q': city
         }
-        response = requests.get(url, params=params)
+        response = requests.get(WEATHER_URL, params=params)
         
         if response.ok:
             current_weather = response.json()['current']['condition']['text']

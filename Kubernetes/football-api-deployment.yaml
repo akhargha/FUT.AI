@@ -6,7 +6,7 @@ metadata:
   labels:
     app: football-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: football-api
@@ -47,10 +47,10 @@ spec:
               configMapKeyRef:
                 name: service-urls
                 key: rapid-api-url
-#        resources:
-#          requests:
-#            memory: "128Mi"
-#            cpu: "500m"
-#          limits:
-#            memory: "256Mi"
-#            cpu: "1000m"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"

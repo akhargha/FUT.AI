@@ -7,3 +7,4 @@ data:
   supabase-url: 'https://hbrecxmlkcpcwmoijrke.supabase.co'
   weather-api-url: 'http://weather-api-service:5001/forecast-weather'
   rapid-api-url: 'https://api-football-v1.p.rapidapi.com/v3/fixtures'
+  weather-url: 'http://api.weatherapi.com/v1/forecast.json'
