@@ -31,16 +31,17 @@ This project is mentored by Professor Jonathan Johnson, Trinity College.
 ## Testing Files
 
 - To test ArticleApp run the following commands
-
-####     docker build -t articleapp . 
-####     docker run -p 8080:8080 articleapp
-####     docker pull shivanshudwivedi/articleapp
+```bash
+     docker build -t articleapp . 
+     docker run -p 8080:8080 articleapp
+     docker pull shivanshudwivedi/articleapp
+```
 
 - To test Aggregator
-
-####     docker build -t FutAPI . 
-####     docker run -p 8080:8080 FutAPI
-
+```bash
+     docker build -t FutAPI . 
+     docker run -p 8080:8080 FutAPI
+```
 - To test FAST API
   
 ## Languages and Frameworks
