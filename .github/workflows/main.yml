@@ -27,7 +27,7 @@ jobs:
         context: ./ArticleGenerator
         file: ./ArticleGenerator/Dockerfile
         push: true
-        tags: shivanshudwivedi/article-generator:latest
+        tags: shivanshudwivedi/article-generator-ci:latest
         platforms: linux/amd64,linux/arm64
 
     - name: Build and push FootballAPI
@@ -36,7 +36,7 @@ jobs:
         context: ./FootballAPI/addFixtures
         file: ./FootballAPI/addFixtures/Dockerfile
         push: true
-        tags: shivanshudwivedi/football-api:latest
+        tags: shivanshudwivedi/football-api-ci:latest
         platforms: linux/amd64,linux/arm64
 
     - name: Build and push WeatherAPI
@@ -45,16 +45,16 @@ jobs:
         context: ./WeatherAPI
         file: ./WeatherAPI/Dockerfile
         push: true
-        tags: shivanshudwivedi/weather-api:latest
+        tags: shivanshudwivedi/weather-api-ci:latest
         platforms: linux/amd64,linux/arm64
 
     - name: Build and push Website
       uses: docker/build-push-action@v2
       with:
-        context: ./Website
-        file: ./Website/Dockerfile
+        context: ./website
+        file: ./website/Dockerfile
         push: true
-        tags: shivanshudwivedi/website:latest
+        tags: shivanshudwivedi/website-ci:latest
         platforms: linux/amd64,linux/arm64
 
     - name: Clean up Docker images
