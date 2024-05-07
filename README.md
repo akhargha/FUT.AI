@@ -13,7 +13,8 @@ FUT.AI, derived from 'Futbol' or Soccer, is a robust full-stack web application 
 
 FUT.AI is structured into several directories, each representing a microservice with its own Dockerfile and Kubernetes configuration for service deployment and management.
 
-![Architectural Overview](https://ibb.co/bdBVdmG "Architectural Overview")
+![Cloud](https://github.com/akhargha/FUT.AI/assets/117129106/a679346a-fed9-47b6-9faf-6b9009e3f097)
+
 
 
 ### Directories
@@ -29,7 +30,12 @@ FUT.AI is structured into several directories, each representing a microservice 
 
 ## Deployment Journey to Google Kubernetes Engine (GKE)
 
-![Kubernetes Architectural Overview](https://ibb.co/jb3qy2P "Kuberenetes Architectural Overview")
+![IMG_1471](https://github.com/akhargha/FUT.AI/assets/117129106/a722a000-5f47-4be5-9ad9-9efb7a493ac4)
+
+### Final Result
+
+![Screenshot 2024-05-07 at 3 08 35 AM](https://github.com/akhargha/FUT.AI/assets/117129106/166ab5fc-bce4-412d-b7ab-b4c98e7446ca)
+
 
 ### Prerequisites
 
@@ -323,7 +329,6 @@ Follow these steps to set up the FUT.AI project on your local machine for develo
 
 Please replace `your_openai_api_key_here`, `your_supabase_key_here`, and other placeholder keys with your actual API keys and credentials.
 
-![Untitled-2024-04-23-0201-3](https://github.com/akhargha/FUT.AI/assets/118499953/cbc2fc84-1a30-472c-baa3-4a85d504fe19)
 
 ## Overview
 
@@ -344,7 +349,8 @@ The project is currently being developed by:
 - Anupam Khargaria
 - Shashwath Sunkum
 
-![The Team](https://ibb.co/4dQtDfc "The Team")
+![FullSizeRender](https://github.com/akhargha/FUT.AI/assets/117129106/e5184e25-a050-4f00-9b83-51d17326e2e4)
+
   
 ### Credits
 This project is mentored by Professor Jonathan Johnson, Trinity College.
