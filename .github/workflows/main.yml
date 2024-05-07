@@ -56,10 +56,3 @@ jobs:
         push: true
         tags: shivanshudwivedi/website-ci:latest
         platforms: linux/amd64,linux/arm64
-
-    - name: Clean up Docker images
-      run: |
-        docker rmi shivanshudwivedi/article-generator-ci:latest
-        docker rmi shivanshudwivedi/football-api-ci:latest
-        docker rmi shivanshudwivedi/football-api-ci:latest
-        docker rmi shivanshudwivedi/website-ci:latest
