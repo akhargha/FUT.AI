@@ -59,7 +59,7 @@ jobs:
 
     - name: Clean up Docker images
       run: |
-        docker rmi yourusername/article-generator:latest
-        docker rmi yourusername/football-api:latest
-        docker rmi yourusername/weather-api:latest
-        docker rmi yourusername/website:latest
+        docker rmi shivanshudwivedi/article-generator-ci:latest
+        docker rmi shivanshudwivedi/football-api-ci:latest
+        docker rmi shivanshudwivedi/football-api-ci:latest
+        docker rmi shivanshudwivedi/website-ci:latest
