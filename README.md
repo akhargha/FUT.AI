@@ -330,6 +330,8 @@ Follow these steps to set up the FUT.AI project on your local machine for develo
 Please replace `your_openai_api_key_here`, `your_supabase_key_here`, and other placeholder keys with your actual API keys and credentials.
 
 
+
+
 ## Overview
 
 ### Snapshots of our UI
@@ -360,7 +362,7 @@ The project is currently being developed by:
 - Anupam Khargaria
 - Shashwath Sunkum
 
-![FullSizeRender](https://github.com/akhargha/FUT.AI/assets/117129106/e5184e25-a050-4f00-9b83-51d17326e2e4)
+![FullSizeRender (1)](https://github.com/akhargha/FUT.AI/assets/117129106/7668f2ad-385e-4951-a032-fef7f8f5db18)
 
   
 ### Credits
