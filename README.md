@@ -332,6 +332,17 @@ Please replace `your_openai_api_key_here`, `your_supabase_key_here`, and other p
 
 ## Overview
 
+### Snapshots of our UI
+
+![Screenshot 2024-05-07 at 3 17 57 AM](https://github.com/akhargha/FUT.AI/assets/117129106/53bff63c-6ebd-4e66-9a49-dacd25206a52)
+
+![Screenshot 2024-05-07 at 3 18 13 AM](https://github.com/akhargha/FUT.AI/assets/117129106/114f8ea2-e964-44ac-9c02-4700a8a2ab19)
+
+![Screenshot 2024-05-07 at 3 18 34 AM](https://github.com/akhargha/FUT.AI/assets/117129106/eab70cab-5337-4c99-ac45-349f9785b33f)
+
+![Screenshot 2024-05-07 at 3 18 43 AM](https://github.com/akhargha/FUT.AI/assets/117129106/eae6904c-4df2-41a9-93ac-76b870fdd06c)
+
+
 ### Languages and Frameworks
 
 The project has been developed using the following languages and frameworks:
