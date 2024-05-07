@@ -33,8 +33,8 @@ jobs:
     - name: Build and push FootballAPI
       uses: docker/build-push-action@v2
       with:
-        context: ./FootballAPI
-        file: ./FootballAPI/Dockerfile
+        context: ./FootballAPI/addFixtures
+        file: ./FootballAPI/addFixtures/Dockerfile
         push: true
         tags: shivanshudwivedi/football-api:latest
         platforms: linux/amd64,linux/arm64
